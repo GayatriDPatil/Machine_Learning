@@ -18,6 +18,8 @@ y = sc_y.fit_transform(y.reshape(-1,1))
 
 reg = SVR(kernel='rbf')
 reg.fit(X,y)
+
+
 y_pred = reg.predict(np.array([5]).reshape(-1,1))
 print(y_pred)
 
