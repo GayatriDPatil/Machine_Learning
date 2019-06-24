@@ -9,7 +9,7 @@ print(dataset)
 import re
 
 # Natural Language Tool Kit
-import nltk
+#import nltk
 
 #nltk.download('stopwords')
 
