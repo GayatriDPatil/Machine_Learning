@@ -77,7 +77,7 @@
 							"value": "@pipeline().parameters.account_name",
 							"type": "Expression"
 						},
-						"account_key": {
+						"account_keyaccount_name": {
 							"value": "@pipeline().parameters.account_key",
 							"type": "Expression"
 						}
