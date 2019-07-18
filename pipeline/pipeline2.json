@@ -71,7 +71,17 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/ForCopyDataLink"
+					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/ForCopyDataLink",
+					"baseParameters": {
+						"account_name": {
+							"value": "@pipeline().parameters.account_name",
+							"type": "Expression"
+						},
+						"account_key": {
+							"value": "@pipeline().parameters.account_key",
+							"type": "Expression"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "gayatriDatabricks_LinkedService",
@@ -79,6 +89,16 @@
 				}
 			}
 		],
+		"parameters": {
+			"account_name": {
+				"type": "string",
+				"defaultValue": "simplitesting"
+			},
+			"account_key": {
+				"type": "string",
+				"defaultValue": "hePUhzTzQo2tXxEfEvpPrPI0Hl2TjySGy2CGxq5AwgQCbU4lA1Jx4QD9BzX8n5TvwpnF7PC6YKHNJUcCwPxUsQ"
+			}
+		},
 		"annotations": []
 	}
 }
