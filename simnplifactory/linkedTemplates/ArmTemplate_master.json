@@ -7,13 +7,13 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "simnplifactory"
 		},
-		"gayatriDatabricks_LinkedService_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'gayatriDatabricks_LinkedService'"
-		},
 		"AzureBlobStorage1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"gayatriDatabricks_LinkedService_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'gayatriDatabricks_LinkedService'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -42,11 +42,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"gayatriDatabricks_LinkedService_accessToken": {
-						"value": "[parameters('gayatriDatabricks_LinkedService_accessToken')]"
-					},
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"gayatriDatabricks_LinkedService_accessToken": {
+						"value": "[parameters('gayatriDatabricks_LinkedService_accessToken')]"
 					}
 				}
 			},

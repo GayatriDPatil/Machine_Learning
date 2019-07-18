@@ -5,10 +5,10 @@
 		"factoryName": {
 			"value": "simnplifactory"
 		},
-		"gayatriDatabricks_LinkedService_accessToken": {
+		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
-		"AzureBlobStorage1_connectionString": {
+		"gayatriDatabricks_LinkedService_accessToken": {
 			"value": ""
 		},
 		"containerUri": {
