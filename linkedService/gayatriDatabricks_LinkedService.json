@@ -6,8 +6,10 @@
 		"type": "AzureDatabricks",
 		"typeProperties": {
 			"domain": "https://westindia.azuredatabricks.net",
-			"existingClusterId": "0717-084240-apply307",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNJTU5QTElGQUNUT1JZX2QxY2YzOTE5LTRiZTgtNDRlMC05YmI1LWVjMzU4NDFmYzJlYiINCn0="
+			"newClusterNodeType": "Standard_DS3_v2",
+			"newClusterNumOfWorker": "1",
+			"newClusterVersion": "5.4.x-cpu-ml-scala2.11",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNJTU5QTElGQUNUT1JZX2E2M2I2NTk2LTAzODAtNGEwYi05YmU1LWQyZjZiMjc4ZGZkNCINCn0="
 		}
 	}
 }
