@@ -342,7 +342,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/2019-07-18 - DBFS Example (1)"
+							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/Read_Csv_from_CopyData"
 						},
 						"linkedServiceName": {
 							"referenceName": "gayatriDatabricks_LinkedService",
