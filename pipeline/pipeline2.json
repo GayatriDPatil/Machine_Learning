@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "copy file",
+				"name": "file_copy_to_blob",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -56,7 +56,7 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "copy file",
+						"activity": "file_copy_to_blob",
 						"dependencyConditions": [
 							"Succeeded"
 						]
