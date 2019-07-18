@@ -69,7 +69,14 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/ForCopyDataLink"
+				},
+				"linkedServiceName": {
+					"referenceName": "gayatriDatabricks_LinkedService",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
