@@ -162,7 +162,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/Read_Csv_from_CopyData"
+							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/ForCopyDataLink"
 						},
 						"linkedServiceName": {
 							"referenceName": "gayatriDatabricks_LinkedService",
