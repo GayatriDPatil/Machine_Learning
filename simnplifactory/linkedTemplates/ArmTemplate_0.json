@@ -797,7 +797,7 @@
 					},
 					"file_name": {
 						"type": "string",
-						"defaultValue": "bike_sharing"
+						"defaultValue": "bike_sharing.csv"
 					},
 					"input_path": {
 						"type": "string",
