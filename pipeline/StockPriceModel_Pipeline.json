@@ -73,16 +73,28 @@
 				"typeProperties": {
 					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/2019-07-17 - Azure Blob Storage Import Example Notebook (1)",
 					"baseParameters": {
-						"output_path": {
-							"value": "@pipeline().parameters.output_path",
+						"output_path_train": {
+							"value": "@pipeline().parameters.output_path_train",
 							"type": "Expression"
 						},
 						"file_name": {
 							"value": "@pipeline().parameters.file_name",
 							"type": "Expression"
 						},
-						"input_path": {
-							"value": "@pipeline().parameters.input_path",
+						"input_path_train": {
+							"value": "@pipeline().parameters.input_path_train",
+							"type": "Expression"
+						},
+						"output_test_path": {
+							"value": "@pipeline().parameters.output_test_path",
+							"type": "Expression"
+						},
+						"file_name_test": {
+							"value": "@pipeline().parameters.file_name_test",
+							"type": "Expression"
+						},
+						"input_path_test": {
+							"value": "@pipeline().parameters.input_path_test",
 							"type": "Expression"
 						}
 					}
@@ -94,7 +106,7 @@
 			}
 		],
 		"parameters": {
-			"output_path": {
+			"output_path_train": {
 				"type": "string",
 				"defaultValue": "/output"
 			},
@@ -102,7 +114,19 @@
 				"type": "string",
 				"defaultValue": "Google_Stock_Price_Train.csv"
 			},
-			"input_path": {
+			"input_path_train": {
+				"type": "string",
+				"defaultValue": "/input"
+			},
+			"output_test_path": {
+				"type": "string",
+				"defaultValue": "/output"
+			},
+			"file_name_test": {
+				"type": "string",
+				"defaultValue": "Google_Stock_Price_Test.csv"
+			},
+			"input_path_test": {
 				"type": "string",
 				"defaultValue": "/input"
 			}
