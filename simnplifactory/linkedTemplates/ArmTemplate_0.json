@@ -327,7 +327,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"folderPath": "output",
-						"container": "simpliblob"
+						"container": "reviewblob"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
