@@ -73,16 +73,16 @@
 				"typeProperties": {
 					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/Week6_Review_File",
 					"baseParameters": {
-						"Input_file": {
-							"value": "@pipeline().parameters.Input_file",
+						"input": {
+							"value": "@pipeline().parameters.input",
 							"type": "Expression"
 						},
 						"File_name": {
 							"value": "@pipeline().parameters.File_name",
 							"type": "Expression"
 						},
-						"Output_file": {
-							"value": "@pipeline().parameters.Output_file",
+						"output": {
+							"value": "@pipeline().parameters.output",
 							"type": "Expression"
 						}
 					}
@@ -94,17 +94,17 @@
 			}
 		],
 		"parameters": {
-			"Input_file": {
+			"input": {
 				"type": "string",
-				"defaultValue": "/Input_file"
+				"defaultValue": "input"
 			},
 			"File_name": {
 				"type": "string",
 				"defaultValue": "house-prices.csv"
 			},
-			"Output_file": {
+			"output": {
 				"type": "string",
-				"defaultValue": "Output_file"
+				"defaultValue": "output"
 			}
 		},
 		"annotations": []
