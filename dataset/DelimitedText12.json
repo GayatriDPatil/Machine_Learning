@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "house-prices.csv",
-				"folderPath": "Input_file",
+				"folderPath": "input",
 				"container": "simpliblob"
 			},
 			"columnDelimiter": ",",
