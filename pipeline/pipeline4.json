@@ -52,7 +52,7 @@
 				]
 			},
 			{
-				"name": "Notebook1",
+				"name": "Read_csv_and_predict",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
