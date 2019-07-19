@@ -685,8 +685,8 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "house-prices.csv",
-						"folderPath": "Input_file",
-						"container": "simpliblob"
+						"folderPath": "input",
+						"container": "reviewblob"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -737,7 +737,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"folderPath": "Output_file",
+						"folderPath": "output",
 						"container": "simpliblob"
 					},
 					"columnDelimiter": ",",
