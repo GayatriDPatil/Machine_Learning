@@ -381,7 +381,7 @@
 									"value": "@pipeline().parameters.account_name",
 									"type": "Expression"
 								},
-								"account_keyaccount_name": {
+								"account_key": {
 									"value": "@pipeline().parameters.account_key",
 									"type": "Expression"
 								}
