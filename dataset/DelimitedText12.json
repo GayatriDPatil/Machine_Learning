@@ -12,7 +12,7 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "house-prices.csv",
 				"folderPath": "input",
-				"container": "simpliblob"
+				"container": "reviewblob"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
