@@ -40,13 +40,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText8",
+						"referenceName": "DelimitedText10",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText9",
+						"referenceName": "DelimitedText11",
 						"type": "DatasetReference"
 					}
 				]
@@ -96,11 +96,11 @@
 		"parameters": {
 			"output_path": {
 				"type": "string",
-				"defaultValue": "/output2"
+				"defaultValue": "/output"
 			},
 			"file_name": {
 				"type": "string",
-				"defaultValue": "bike_sharing.csv"
+				"defaultValue": "Google_Stock_Price_Train.csv"
 			},
 			"input_path": {
 				"type": "string",
