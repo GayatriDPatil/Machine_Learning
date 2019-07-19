@@ -100,7 +100,7 @@
 			},
 			"file_name": {
 				"type": "string",
-				"defaultValue": "Google_Stock_Price_Train"
+				"defaultValue": "bike_sharing"
 			},
 			"input_path": {
 				"type": "string",
