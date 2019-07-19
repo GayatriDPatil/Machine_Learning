@@ -692,7 +692,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline4')]",
+			"name": "[concat(parameters('factoryName'), '/StockPriceModel_Pipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -793,7 +793,7 @@
 				"parameters": {
 					"output_path": {
 						"type": "string",
-						"defaultValue": "/output"
+						"defaultValue": "/output2"
 					},
 					"file_name": {
 						"type": "string",
