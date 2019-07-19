@@ -1,5 +1,5 @@
 {
-	"name": "pipeline4",
+	"name": "StockPriceModel_Pipeline",
 	"properties": {
 		"activities": [
 			{
@@ -96,7 +96,7 @@
 		"parameters": {
 			"output_path": {
 				"type": "string",
-				"defaultValue": "/output"
+				"defaultValue": "/output2"
 			},
 			"file_name": {
 				"type": "string",
