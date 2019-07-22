@@ -104,11 +104,11 @@
 			},
 			"input": {
 				"type": "string",
-				"defaultValue": "input"
+				"defaultValue": "/input"
 			},
 			"output": {
 				"type": "string",
-				"defaultValue": "output"
+				"defaultValue": "/output"
 			},
 			"accountkey": {
 				"type": "string",
