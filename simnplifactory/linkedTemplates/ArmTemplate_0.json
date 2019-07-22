@@ -889,7 +889,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/stockpricepickle",
+							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/Save_PickleFile_Inblob",
 							"baseParameters": {
 								"accountname": {
 									"value": "@pipeline().parameters.accountname",
@@ -905,6 +905,10 @@
 								},
 								"accountkey": {
 									"value": "@pipeline().parameters.accountkey",
+									"type": "Expression"
+								},
+								"filename": {
+									"value": "@pipeline().parameters.filename",
 									"type": "Expression"
 								}
 							}
@@ -931,6 +935,10 @@
 					"accountkey": {
 						"type": "string",
 						"defaultValue": "hePUhzTzQo2tXxEfEvpPrPI0Hl2TjySGy2CGxq5AwgQCbU4lA1Jx4QD9BzX8n5TvwpnF7PC6YKHNJUcCwPxUsQ=="
+					},
+					"filename": {
+						"type": "string",
+						"defaultValue": "house-prices.csv"
 					}
 				},
 				"annotations": []

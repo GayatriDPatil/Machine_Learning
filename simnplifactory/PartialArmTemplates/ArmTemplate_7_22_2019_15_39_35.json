@@ -1,0 +1,147 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "simnplifactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSavePickleFileInBlob')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_Data_to_Blob",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSetting",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSetting"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSetting"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSetting",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "DelimitedText14",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DelimitedText15",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Create_Pickle_File",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Copy_Data_to_Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/Save_PickleFile_Inblob",
+							"baseParameters": {
+								"accountname": {
+									"value": "@pipeline().parameters.accountname",
+									"type": "Expression"
+								},
+								"input": {
+									"value": "@pipeline().parameters.input",
+									"type": "Expression"
+								},
+								"output": {
+									"value": "@pipeline().parameters.output",
+									"type": "Expression"
+								},
+								"accountkey": {
+									"value": "@pipeline().parameters.accountkey",
+									"type": "Expression"
+								},
+								"filename": {
+									"value": "@pipeline().parameters.filename",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "gayatriDatabricks_LinkedService",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"parameters": {
+					"accountname": {
+						"type": "string",
+						"defaultValue": "simplitesting"
+					},
+					"input": {
+						"type": "string",
+						"defaultValue": "/input"
+					},
+					"output": {
+						"type": "string",
+						"defaultValue": "/output"
+					},
+					"accountkey": {
+						"type": "string",
+						"defaultValue": "hePUhzTzQo2tXxEfEvpPrPI0Hl2TjySGy2CGxq5AwgQCbU4lA1Jx4QD9BzX8n5TvwpnF7PC6YKHNJUcCwPxUsQ=="
+					},
+					"filename": {
+						"type": "string",
+						"defaultValue": "house-prices.csv"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		}
+	]
+}
