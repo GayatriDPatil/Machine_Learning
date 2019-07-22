@@ -88,6 +88,10 @@
 						"accountkey": {
 							"value": "@pipeline().parameters.accountkey",
 							"type": "Expression"
+						},
+						"filename": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
 						}
 					}
 				},
@@ -113,6 +117,10 @@
 			"accountkey": {
 				"type": "string",
 				"defaultValue": "hePUhzTzQo2tXxEfEvpPrPI0Hl2TjySGy2CGxq5AwgQCbU4lA1Jx4QD9BzX8n5TvwpnF7PC6YKHNJUcCwPxUsQ=="
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": "Google_Stock_Price_Train"
 			}
 		},
 		"annotations": []
