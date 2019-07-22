@@ -80,7 +80,7 @@
 			}
 		],
 		"parameters": {
-			"account_name": {
+			"accountname": {
 				"type": "string",
 				"defaultValue": "simplitesting"
 			},
@@ -91,6 +91,10 @@
 			"output": {
 				"type": "string",
 				"defaultValue": "output"
+			},
+			"accountkey": {
+				"type": "string",
+				"defaultValue": "hePUhzTzQo2tXxEfEvpPrPI0Hl2TjySGy2CGxq5AwgQCbU4lA1Jx4QD9BzX8n5TvwpnF7PC6YKHNJUcCwPxUsQ=="
 			}
 		},
 		"annotations": []
