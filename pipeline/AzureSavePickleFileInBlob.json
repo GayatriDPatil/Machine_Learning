@@ -71,7 +71,25 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/stockpricepickle"
+					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/stockpricepickle",
+					"baseParameters": {
+						"accountname": {
+							"value": "@pipeline().parameters.accountname",
+							"type": "Expression"
+						},
+						"input": {
+							"value": "@pipeline().parameters.input",
+							"type": "Expression"
+						},
+						"output": {
+							"value": "@pipeline().parameters.output",
+							"type": "Expression"
+						},
+						"accountkey": {
+							"value": "@pipeline().parameters.accountkey",
+							"type": "Expression"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "gayatriDatabricks_LinkedService",
