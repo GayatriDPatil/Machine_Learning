@@ -71,7 +71,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/stockpricepickle",
+					"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/Save_PickleFile_Inblob",
 					"baseParameters": {
 						"accountname": {
 							"value": "@pipeline().parameters.accountname",
@@ -120,7 +120,7 @@
 			},
 			"filename": {
 				"type": "string",
-				"defaultValue": "Google_Stock_Price_Train"
+				"defaultValue": "house-prices.csv"
 			}
 		},
 		"annotations": []
