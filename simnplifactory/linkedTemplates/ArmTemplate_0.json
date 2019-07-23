@@ -14,6 +14,10 @@
 		"gayatriDatabricks_LinkedService_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'gayatriDatabricks_LinkedService'"
+		},
+		"CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
 		}
 	},
 	"variables": {
@@ -49,6 +53,19 @@
 					"newClusterNodeType": "Standard_DS3_v2",
 					"newClusterNumOfWorker": "1",
 					"newClusterVersion": "5.4.x-cpu-ml-scala2.11"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDb1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -813,285 +830,56 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSavePickleFileInBlob')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText16')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
-					{
-						"name": "Copy_Data_to_Blob",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSetting",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSetting"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSetting"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSetting",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "DelimitedText14",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DelimitedText15",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Create_Pickle_File",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Copy_Data_to_Blob",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/Save_PickleFile_Inblob",
-							"baseParameters": {
-								"accountname": {
-									"value": "@pipeline().parameters.accountname",
-									"type": "Expression"
-								},
-								"input": {
-									"value": "@pipeline().parameters.input",
-									"type": "Expression"
-								},
-								"output": {
-									"value": "@pipeline().parameters.output",
-									"type": "Expression"
-								},
-								"accountkey": {
-									"value": "@pipeline().parameters.accountkey",
-									"type": "Expression"
-								},
-								"filename": {
-									"value": "@pipeline().parameters.filename",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "gayatriDatabricks_LinkedService",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"parameters": {
-					"accountname": {
-						"type": "string",
-						"defaultValue": "simplitesting"
-					},
-					"input": {
-						"type": "string",
-						"defaultValue": "/input"
-					},
-					"output": {
-						"type": "string",
-						"defaultValue": "/output"
-					},
-					"accountkey": {
-						"type": "string",
-						"defaultValue": "hePUhzTzQo2tXxEfEvpPrPI0Hl2TjySGy2CGxq5AwgQCbU4lA1Jx4QD9BzX8n5TvwpnF7PC6YKHNJUcCwPxUsQ=="
-					},
-					"filename": {
-						"type": "string",
-						"defaultValue": "house-prices.csv"
-					}
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
 				},
-				"annotations": []
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "house-prices.csv",
+						"folderPath": "Input_file",
+						"container": "simpliblob"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText14')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText15')]",
-				"[concat(variables('factoryId'), '/linkedServices/gayatriDatabricks_LinkedService')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/StockPriceModel_Pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "copy_csv_file",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSetting",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSetting"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSetting"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSetting",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "DelimitedText10",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DelimitedText11",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Read_csv_and_predict",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "copy_csv_file",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/2019-07-17 - Azure Blob Storage Import Example Notebook (1)",
-							"baseParameters": {
-								"output_path_train": {
-									"value": "@pipeline().parameters.output_path_train",
-									"type": "Expression"
-								},
-								"file_name": {
-									"value": "@pipeline().parameters.file_name",
-									"type": "Expression"
-								},
-								"input_path_train": {
-									"value": "@pipeline().parameters.input_path_train",
-									"type": "Expression"
-								},
-								"output_test_path": {
-									"value": "@pipeline().parameters.output_test_path",
-									"type": "Expression"
-								},
-								"file_name_test": {
-									"value": "@pipeline().parameters.file_name_test",
-									"type": "Expression"
-								},
-								"input_path_test": {
-									"value": "@pipeline().parameters.input_path_test",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "gayatriDatabricks_LinkedService",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"parameters": {
-					"output_path_train": {
-						"type": "string",
-						"defaultValue": "/output"
-					},
-					"file_name": {
-						"type": "string",
-						"defaultValue": "Google_Stock_Price_Train.csv"
-					},
-					"input_path_train": {
-						"type": "string",
-						"defaultValue": "/input"
-					},
-					"output_test_path": {
-						"type": "string",
-						"defaultValue": "/output"
-					},
-					"file_name_test": {
-						"type": "string",
-						"defaultValue": "Google_Stock_Price_Test.csv"
-					},
-					"input_path_test": {
-						"type": "string",
-						"defaultValue": "/input"
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText10')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText11')]",
-				"[concat(variables('factoryId'), '/linkedServices/gayatriDatabricks_LinkedService')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		}
 	]

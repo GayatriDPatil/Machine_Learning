@@ -10,6 +10,9 @@
 		},
 		"gayatriDatabricks_LinkedService_accessToken": {
 			"value": ""
+		},
+		"CosmosDb1_connectionString": {
+			"value": ""
 		}
 	}
 }
