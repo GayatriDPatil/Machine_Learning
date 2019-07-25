@@ -97,11 +97,11 @@
 		"parameters": {
 			"input": {
 				"type": "string",
-				"defaultValue": "/Input_file"
+				"defaultValue": "/Input"
 			},
 			"output": {
 				"type": "string",
-				"defaultValue": "/output2"
+				"defaultValue": "/output"
 			},
 			"filename": {
 				"type": "string",
