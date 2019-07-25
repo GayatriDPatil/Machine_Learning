@@ -11,13 +11,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
-		"gayatriDatabricks_LinkedService_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'gayatriDatabricks_LinkedService'"
-		},
 		"CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
+		},
+		"gayatriDatabricks_LinkedService_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'gayatriDatabricks_LinkedService'"
 		}
 	},
 	"variables": {
@@ -159,6 +159,66 @@
 				"[concat(variables('factoryId'), '/datasets/DelimitedText14')]",
 				"[concat(variables('factoryId'), '/datasets/DelimitedText15')]",
 				"[concat(variables('factoryId'), '/linkedServices/gayatriDatabricks_LinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyFilefromBlobToCosmosdb')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "BlobCopyToCosmosdb",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSetting",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSetting"
+								}
+							},
+							"sink": {
+								"type": "DocumentDbCollectionSink",
+								"nestingSeparator": ".",
+								"writeBehavior": "insert",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "DelimitedText16",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DocumentDbCollection1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DelimitedText16')]",
+				"[concat(variables('factoryId'), '/datasets/DocumentDbCollection1')]"
 			]
 		},
 		{
@@ -985,6 +1045,59 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText16')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "house-prices.csv",
+						"folderPath": "Input_file",
+						"container": "simpliblob"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1365,6 +1478,25 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DocumentDbCollection1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDb1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DocumentDbCollection",
+				"typeProperties": {
+					"collectionName": "Items"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDb1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1373,6 +1505,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDb1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -1398,13 +1543,13 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/CopyFilefromBlobToCosmosdb')]",
+			"name": "[concat(parameters('factoryName'), '/Save_data_to_cosmosdb')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "BlobCopyToCosmosdb",
+						"name": "Copy Data1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -1427,38 +1572,108 @@
 								}
 							},
 							"sink": {
-								"type": "DocumentDbCollectionSink",
-								"nestingSeparator": ".",
-								"writeBehavior": "insert",
-								"disableMetricsCollection": false
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSetting"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSetting",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
 							},
 							"enableStaging": false
 						},
 						"inputs": [
 							{
-								"referenceName": "DelimitedText16",
+								"referenceName": "DelimitedText17",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "DocumentDbCollection1",
+								"referenceName": "DelimitedText18",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/gayatri.jadhav1@cgm4l.onmicrosoft.com/Copy_Data_Cosmosdb_Without_Spark",
+							"baseParameters": {
+								"input": {
+									"value": "@pipeline().parameters.input",
+									"type": "Expression"
+								},
+								"output": {
+									"value": "@pipeline().parameters.output",
+									"type": "Expression"
+								},
+								"filename": {
+									"value": "@pipeline().parameters.filename",
+									"type": "Expression"
+								},
+								"accountname": {
+									"value": "@pipeline().parameters.accountname",
+									"type": "Expression"
+								},
+								"accountkey": {
+									"value": "@pipeline().parameters.accountkey",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "gayatriDatabricks_LinkedService",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
+				"parameters": {
+					"input": {
+						"type": "string",
+						"defaultValue": "/Input"
+					},
+					"output": {
+						"type": "string",
+						"defaultValue": "/output"
+					},
+					"filename": {
+						"type": "string",
+						"defaultValue": "house-prices.csv"
+					},
+					"accountname": {
+						"type": "string",
+						"defaultValue": "simplitesting"
+					},
+					"accountkey": {
+						"type": "string",
+						"defaultValue": "hePUhzTzQo2tXxEfEvpPrPI0Hl2TjySGy2CGxq5AwgQCbU4lA1Jx4QD9BzX8n5TvwpnF7PC6YKHNJUcCwPxUsQ=="
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText16')]",
-				"[concat(variables('factoryId'), '/datasets/DocumentDbCollection1')]"
+				"[concat(variables('factoryId'), '/datasets/DelimitedText17')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText18')]",
+				"[concat(variables('factoryId'), '/linkedServices/gayatriDatabricks_LinkedService')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText16')]",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText17')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1511,36 +1726,31 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DocumentDbCollection1')]",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText18')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "CosmosDb1",
+					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "DocumentDbCollection",
+				"type": "DelimitedText",
 				"typeProperties": {
-					"collectionName": "Items"
-				}
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "output2",
+						"container": "simpliblob"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/CosmosDb1')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"connectionString": "[parameters('CosmosDb1_connectionString')]"
-				}
-			},
-			"dependsOn": []
 		}
 	]
 }

@@ -11,13 +11,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
-		"gayatriDatabricks_LinkedService_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'gayatriDatabricks_LinkedService'"
-		},
 		"CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
+		},
+		"gayatriDatabricks_LinkedService_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'gayatriDatabricks_LinkedService'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -49,11 +49,11 @@
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
 					},
-					"gayatriDatabricks_LinkedService_accessToken": {
-						"value": "[parameters('gayatriDatabricks_LinkedService_accessToken')]"
-					},
 					"CosmosDb1_connectionString": {
 						"value": "[parameters('CosmosDb1_connectionString')]"
+					},
+					"gayatriDatabricks_LinkedService_accessToken": {
+						"value": "[parameters('gayatriDatabricks_LinkedService_accessToken')]"
 					}
 				}
 			},

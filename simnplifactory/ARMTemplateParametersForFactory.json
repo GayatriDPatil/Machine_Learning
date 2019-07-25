@@ -8,10 +8,10 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
-		"gayatriDatabricks_LinkedService_accessToken": {
+		"CosmosDb1_connectionString": {
 			"value": ""
 		},
-		"CosmosDb1_connectionString": {
+		"gayatriDatabricks_LinkedService_accessToken": {
 			"value": ""
 		}
 	}
